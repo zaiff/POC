@@ -15,12 +15,10 @@ class ProductViewModel(
     private val repository: ProductRepository
 ) : ViewModel() {
 
-    // Paging
     val pagedProducts: Flow<PagingData<Product>> = repository
         .getPagedProducts()
         .cachedIn(viewModelScope)
 
-    // Optional: Keep if ProductDetailsScreen relies on flow state
     private val _productDetails = MutableStateFlow<Product?>(null)
     val productDetails: StateFlow<Product?> = _productDetails
 

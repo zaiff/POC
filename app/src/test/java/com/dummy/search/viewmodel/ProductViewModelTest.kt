@@ -29,7 +29,6 @@ class ProductViewModelTest {
         Dispatchers.setMain(testDispatcher)
         repository = mockk()
 
-        // ✅ Mock ProductDetails
         val mockProduct = Product(
             id = 1,
             title = "Mock Product 1",
@@ -42,7 +41,6 @@ class ProductViewModelTest {
         )
         coEvery { repository.getProductDetails(1) } returns mockProduct
 
-        // ✅ Mock getPagedProducts() with no arguments
         val fakeProducts = listOf(
             mockProduct,
             Product(

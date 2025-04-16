@@ -20,7 +20,6 @@ class ProductRepository(private val apiService: ApiService) {
         ).flow
     }
 
-    // Optional: Keep your single product fetch if needed
     suspend fun getProductDetails(productId: Int): Product {
         return apiService.getProductDetails(productId)
     }

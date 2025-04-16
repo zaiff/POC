@@ -28,13 +28,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Create API and Repositories
         val apiService = ApiService.create()
         val productRepository = ProductRepository(apiService)
         val cartDao = CartDatabase.getDatabase(applicationContext).cartDao()
         val cartRepository = CartRepository(cartDao)
 
-        // Create ViewModels using factories
         productViewModel = ViewModelProvider(
             this,
             ProductViewModelFactory(productRepository)
@@ -49,12 +47,11 @@ class MainActivity : ComponentActivity() {
             MyApplicationTheme {
                 val navController = rememberNavController()
 
-                // ✅ Set status bar color to match TopAppBar
                 val primaryColor = androidx.compose.material3.MaterialTheme.colorScheme.primary
                 SideEffect {
                     window.statusBarColor = primaryColor.toArgb()
                     WindowCompat.getInsetsController(window, window.decorView)
-                        .isAppearanceLightStatusBars = false // ✅ light content (white icons)
+                        .isAppearanceLightStatusBars = false
                 }
 
                 NavHost(
